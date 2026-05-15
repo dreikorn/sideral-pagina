@@ -283,6 +283,22 @@ section { padding: 100px 32px; }
   overflow: hidden;
   background: linear-gradient(90deg, #EDF2F8 0%, var(--bg-white) 30%, var(--bg-white) 70%, #EDF2F8 100%);
 }
+.hero canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%) scale(0.88);
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero > *:not(canvas) {
+  position: relative;
+  z-index: 1;
+}
 .hero::before {
   content: '';
   position: absolute;

@@ -7,8 +7,8 @@
   var navLinks = document.querySelector('.nav-links');
   var revealed = new Set();
 
-  // ===== SIDERAL TALENT LOGO (canvas) =====
-  function drawLogo() {
+  // ===== NAV LOGO (spiral + text, canvas) =====
+  function drawNavLogo() {
     var c = document.getElementById('navLogo');
     if (!c) return;
     var ctx = c.getContext('2d');
@@ -39,10 +39,10 @@
       return 2.8 + Math.pow(s, 1.2) * 3.2;
     }
 
-    // Colors adapted from white to blue scheme
     var accent = '74,123,181';  // #4A7BB5
     var dark = '30,30,48';      // #1E1E30
 
+    // --- Spiral ---
     ctx.save();
     ctx.translate(340, 226); ctx.rotate(-3 * Math.PI / 180); ctx.translate(-340, -226);
 
@@ -64,6 +64,7 @@
     ctx.fill();
     ctx.restore();
 
+    // --- Text ---
     function spaced(text, y, font, gap, al, clr) {
       ctx.font = font; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
       ctx.fillStyle = 'rgba(' + clr + ',' + al + ')';
@@ -78,10 +79,10 @@
     }
 
     spaced('SIDERAL', 312, '600 54px "Playfair Display", serif', 18, 1, dark);
-    ctx.strokeStyle = 'rgba(' + accent + ',0.6)'; ctx.lineWidth = 0.9;
-    ctx.beginPath(); ctx.moveTo(218, 332); ctx.lineTo(272, 332); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(408, 332); ctx.lineTo(462, 332); ctx.stroke();
-    spaced('TALENT', 344, '400 16px "Playfair Display", serif', 10, 0.85, accent);
+    ctx.strokeStyle = 'rgba(' + accent + ',0.6)'; ctx.lineWidth = 2.3;
+    ctx.beginPath(); ctx.moveTo(168, 332); ctx.lineTo(222, 332); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(458, 332); ctx.lineTo(512, 332); ctx.stroke();
+    spaced('TALENT', 354, '500 40px "Playfair Display", serif', 14, 0.95, accent);
   }
 
   function rgbToHex(rgb) {
@@ -91,12 +92,74 @@
       return h.length === 1 ? '0' + h : h;
     }).join('');
   }
+  function drawSpiral() {
+    var c = document.getElementById('heroLogo');
+    if (!c) return;
+    var ctx = c.getContext('2d');
+    c.width = 900; c.height = 655;
+
+    ctx.scale(2.2, 2.2);
+    ctx.translate(-136, -97);
+
+    var cx = 340, cy = 180, a = 196, b = 32, omega = 1;
+    var Omega = 15 * Math.PI / 180 / (2 * Math.PI);
+    var T = 9.8 * Math.PI;
+    var phase = -46 * Math.PI / 180;
+
+    function pt(t) {
+      var angle = Omega * t + phase;
+      return [
+        cx + a * Math.cos(omega * t) * Math.cos(angle) + b * Math.sin(omega * t) * Math.sin(angle),
+        cy + a * Math.cos(omega * t) * Math.sin(angle) - b * Math.sin(omega * t) * Math.cos(angle)
+      ];
+    }
+    function alpha(t) {
+      if (t < 0.5) return 0.15 + Math.pow(t / 0.5, 2.0) * 0.20;
+      return 0.35 + Math.pow((t - 0.5) / 0.5, 1.8) * 0.61;
+    }
+    function lineW(t) {
+      if (t < 0.85) return 1.8 + Math.pow(t / 0.85, 1.4) * 1.0;
+      var s = (t - 0.85) / 0.15;
+      return 2.8 + Math.pow(s, 1.2) * 3.2;
+    }
+
+    var accent = '226,231,240';  // #E2E7F0
+
+    ctx.save();
+    ctx.translate(340, 226); ctx.rotate(-3 * Math.PI / 180); ctx.translate(-340, -226);
+
+    var N = 1000, tStart = 2.87 * Math.PI, tStop = 30.70;
+    for (var i = 0; i < N; i++) {
+      var tAbs = tStart + (i + 0.5) / N * (T - tStart);
+      if (tAbs > tStop) continue;
+      var t = (i + 0.5) / N;
+      var p0 = pt(tStart + i / N * (T - tStart));
+      var p1 = pt(tStart + (i + 1) / N * (T - tStart));
+      ctx.beginPath(); ctx.moveTo(p0[0], p0[1]); ctx.lineTo(p1[0], p1[1]);
+      ctx.strokeStyle = 'rgba(' + accent + ',' + alpha(t).toFixed(3) + ')';
+      ctx.lineWidth = lineW(t); ctx.lineCap = 'round'; ctx.stroke();
+    }
+
+    var endPt = pt(31.01);
+    ctx.beginPath(); ctx.arc(endPt[0], endPt[1], 10, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(' + accent + ',0.96)';
+    ctx.fill();
+    ctx.restore();
+  }
 
   // Draw logo once font loads
+  // Draw both when font loads
   if (document.fonts && document.fonts.load) {
-    document.fonts.load('600 54px "Playfair Display"').then(drawLogo).catch(drawLogo);
+    document.fonts.load('600 54px "Playfair Display"').then(function() {
+      drawNavLogo();
+      drawSpiral();
+    }).catch(function() {
+      drawNavLogo();
+      drawSpiral();
+    });
   } else {
-    drawLogo();
+    drawNavLogo();
+    drawSpiral();
   }
 
   // Full page content floats in from bottom to top on load
