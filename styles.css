@@ -229,7 +229,7 @@ section { padding: 100px 32px; }
   display: flex;
   align-items: center;
 }
-.nav-logo canvas {
+.nav-logo-img {
   height: 142px;
   width: auto;
   display: block;
@@ -283,7 +283,7 @@ section { padding: 100px 32px; }
   overflow: hidden;
   background: linear-gradient(90deg, #EDF2F8 0%, var(--bg-white) 30%, var(--bg-white) 70%, #EDF2F8 100%);
 }
-.hero canvas {
+.hero-spiral {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -295,7 +295,7 @@ section { padding: 100px 32px; }
   pointer-events: none;
   z-index: 0;
 }
-.hero > *:not(canvas) {
+.hero > *:not(.hero-spiral) {
   position: relative;
   z-index: 1;
 }
