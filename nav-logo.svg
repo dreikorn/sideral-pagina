@@ -1008,7 +1008,7 @@
 <circle cx="436.243" cy="251.555" r="10" fill="#4a7bb5"/>
 </g>
 <text class="logo-sideral" text-anchor="middle" x="340" y="312">SIDERAL</text>
-<line x1="168" y1="338" x2="222" y2="338" stroke="rgba(74,123,181,0.6)" stroke-width="2.3" stroke-linecap="round"/>
+<line x1="158" y1="338" x2="212" y2="338" stroke="rgba(74,123,181,0.6)" stroke-width="2.3" stroke-linecap="round"/>
 <line x1="458" y1="338" x2="512" y2="338" stroke="rgba(74,123,181,0.6)" stroke-width="2.3" stroke-linecap="round"/>
 <text class="logo-talent" text-anchor="middle" x="340" y="354">TALENT</text>
 </g>
