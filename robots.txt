@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dreikorn.github.io/sideral-pagina/sitemap.xml
+Sitemap: https://www.sideraltalent.com/sitemap.xml
