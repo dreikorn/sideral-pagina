@@ -1,0 +1,16 @@
+{
+  "name": "Sideral Talent",
+  "short_name": "Sideral Talent",
+  "description": "Consultora de b\u00fasqueda ejecutiva y talent advisory en Santiago, Chile",
+  "start_url": "/sideral-pagina/",
+  "display": "minimal-ui",
+  "background_color": "#E2E7F0",
+  "theme_color": "#4A7BB5",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192"
+    }
+  ],
+  "lang": "es-CL"
+}
