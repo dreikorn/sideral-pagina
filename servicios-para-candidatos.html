@@ -46,6 +46,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600&display=swap">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+    .page-wrapper { height: 100%; opacity: 1; transform: none; }
+    main { height: 100%; padding-top: 162px; box-sizing: border-box; }
+    iframe { display: block; }
+  </style>
 </head>
 <body>
 
@@ -86,35 +92,13 @@
 
   <div class="page-wrapper" id="pageWrapper">
 
-  <main>
-
-    <section class="cta-full reveal-section" data-reveal>
-      <div class="container section-inner">
-        <h1 class="section-title" style="max-width:100%;">Servicios para candidatos</h1>
-        <p class="section-subtitle" style="margin: 0 auto 40px;">Reg&iacute;strate en nuestra base de datos y cuando surja una oportunidad alineada con tu perfil, ser&aacute;s de los primeros en saberlo.</p>
-        <div style="max-width:640px;margin:0 auto;">
-          <iframe data-tally-src="https://tally.so/embed/GxB5d2?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="1004" frameborder="0" marginheight="0" marginwidth="0" title="Formulario candidatos"></iframe>
-        </div>
-      </div>
-    </section>
-
+    <main>
+      <iframe src="https://sideraltalent.careers-page.com/open-application/?include_header=false" style="width:100%; height:100%; border:0px;"></iframe>
     </main>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <div class="footer-left">
-          <span class="footer-logo">Sideral Talent</span>
-          <span>&copy; 2026 Sideral Talent &middot; Santiago, Chile</span>
-        </div>
-        <div class="footer-right">
-          <a href="https://www.linkedin.com/company/sideral-talent" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-    </footer>
-
+    
   </div>
-
   <script src="script.js" defer></script>
-  <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+
 </body>
 </html>
