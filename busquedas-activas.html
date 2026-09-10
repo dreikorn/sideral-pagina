@@ -47,9 +47,9 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
   <style>
-    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-    .page-wrapper { height: 100%; opacity: 1; transform: none; }
-    main { height: 100%; padding-top: 162px; box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    .page-wrapper { opacity: 1; transform: none; }
+    main { padding-top: 162px; box-sizing: border-box; }
     iframe { display: block; }
   </style>
 </head>
@@ -83,6 +83,7 @@
         <li><a href="/#empresas">Empresas</a></li>
         <li><a href="/#candidatos">Candidatos</a></li>
         <li><a href="busquedas-activas">B&uacute;squedas Activas</a></li>
+        <li><a href="perspectivas">Perspectivas</a></li>
         <li><a href="contacto" class="nav-cta">Contacto</a></li>
       </ul>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
@@ -94,9 +95,22 @@
   <div class="page-wrapper" id="pageWrapper">
 
     <main>
-      <iframe src="https://sideraltalent.careers-page.com/?include_header=false" style="width:100%; height:100%; border:0px;"></iframe>
+      <iframe src="https://sideraltalent.careers-page.com/?include_header=false" style="width:100%; height:calc(100vh - 162px); border:0px;"></iframe>
     </main>
-    
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <span class="footer-logo">Sideral Talent</span>
+          <span>&copy; 2026 Sideral Talent &middot; Santiago, Chile</span>
+        </div>
+        <div class="footer-right">
+          <a href="perspectivas">Perspectivas</a>
+          <a href="https://www.linkedin.com/company/sideral-talent" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+
   </div>
   <script src="script.js" defer></script>
 
