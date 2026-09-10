@@ -35,40 +35,44 @@
   });
 
   // Nav scroll effect
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 20) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
-
-  // Mobile toggle
-  mobileToggle.addEventListener('click', function() {
-    var links = navLinks;
-    if (links.style.display === 'flex') {
-      links.style.display = 'none';
-    } else {
-      links.style.display = 'flex';
-      links.style.flexDirection = 'column';
-      links.style.position = 'absolute';
-      links.style.top = '100%';
-      links.style.left = '0';
-      links.style.right = '0';
-      links.style.background = 'rgba(255, 255, 255, 0.98)';
-      links.style.backdropFilter = 'blur(20px)';
-      links.style.padding = '24px 32px';
-      links.style.gap = '20px';
-      links.style.borderBottom = '1px solid rgba(0, 0, 0, 0.06)';
-    }
-  });
-
-  // Close mobile menu on link click
-  navLinks.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      if (window.innerWidth <= 768) {
-        navLinks.style.display = 'none';
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
       }
     });
-  });
+  }
+
+  // Mobile toggle
+  if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', function() {
+      var links = navLinks;
+      if (links.style.display === 'flex') {
+        links.style.display = 'none';
+      } else {
+        links.style.display = 'flex';
+        links.style.flexDirection = 'column';
+        links.style.position = 'absolute';
+        links.style.top = '100%';
+        links.style.left = '0';
+        links.style.right = '0';
+        links.style.background = 'rgba(255, 255, 255, 0.98)';
+        links.style.backdropFilter = 'blur(20px)';
+        links.style.padding = '24px 32px';
+        links.style.gap = '20px';
+        links.style.borderBottom = '1px solid rgba(0, 0, 0, 0.06)';
+      }
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+          navLinks.style.display = 'none';
+        }
+      });
+    });
+  }
 })();

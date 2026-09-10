@@ -564,3 +564,87 @@ section { padding: 100px 32px; }
   .hero h1 .highlight { font-size: 40px; }
   .section-title { font-size: 28px; }
 }
+
+/* ===== FUNNEL PAGES (CV / GRACIAS) ===== */
+.bg-alt { background: var(--bg-alt); }
+
+/* Minimal nav with a static tagline instead of links */
+.nav-minimal .nav-inner,
+.nav-minimal .container { justify-content: space-between; gap: 20px; }
+.nav-note { font-size: 13px; color: var(--t-muted); }
+
+/* Offset anchor targets so the fixed nav does not cover them */
+section[id] { scroll-margin-top: 180px; }
+
+/* CV hero meta line */
+.hero > p.hero-meta { font-size: 14px; color: var(--t-muted); margin: 24px auto 0; max-width: none; }
+
+/* CV split (quien te atiende) */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 8px; }
+
+/* Chips */
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.chip { background: var(--c-purple-bg); border: 1px solid var(--border); padding: 8px 16px; border-radius: 100px; font-size: 13px; color: var(--c-purple-dark); font-weight: 500; }
+
+/* Price card */
+.price-card { background: var(--bg-white); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 48px 44px; box-shadow: var(--shadow-hover); }
+.price-label { font-size: 13px; font-weight: 600; color: var(--c-purple); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+.price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.price-amount { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; line-height: 1; }
+.price-iva { font-size: 18px; font-weight: 600; color: var(--t-secondary); }
+.price-note { font-size: 14px; color: var(--t-muted); margin-bottom: 28px; }
+.checks { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+.checks li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--t-secondary); }
+.checks li i { color: var(--c-purple); font-size: 20px; line-height: 1.4; flex-shrink: 0; }
+.price-card .btn { width: 100%; }
+.price-foot { font-size: 13px; color: var(--t-muted); text-align: center; margin-top: 14px; }
+
+/* CV reservar form */
+.form-split { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
+.form-split iframe { border: 0; width: 100%; display: block; }
+.steps { display: flex; flex-direction: column; gap: 18px; margin-top: 32px; }
+.steps .step { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: var(--t-secondary); line-height: 1.6; }
+.steps .step-n { font-size: 13px; font-weight: 700; color: var(--c-purple); background: var(--c-purple-bg); width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+/* Gracias page */
+.page-wrapper.gracias-page { min-height: 100vh; display: flex; flex-direction: column; }
+.gracias-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 180px 32px 100px; background: linear-gradient(90deg, #EDF2F8 0%, var(--bg-white) 30%, var(--bg-white) 70%, #EDF2F8 100%); }
+.gracias-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 860px; }
+.gracias-wrap h1 { font-size: clamp(32px, 4.5vw, 56px); font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 24px; }
+.gracias-wrap .lead { font-size: 18px; color: var(--t-secondary); line-height: 1.7; max-width: 620px; margin-bottom: 16px; }
+.gracias-wrap .lead strong { color: var(--t-primary); }
+.gracias-wrap .note { font-size: 15px; color: var(--t-muted); line-height: 1.6; max-width: 560px; margin-bottom: 48px; }
+.gracias-wrap .back { margin-top: 40px; font-size: 14px; font-weight: 500; color: var(--c-purple); }
+.gracias-wrap .back:hover { color: var(--c-purple-dark); }
+
+/* Progress steps */
+.progress { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; row-gap: 16px; background: var(--bg-white); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: var(--shadow); }
+.progress .step { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; white-space: nowrap; }
+.progress .step-n { font-size: 13px; font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.progress .step.done .step-n { background: var(--c-purple); color: #fff; }
+.progress .step.now .step-n { background: var(--c-purple-bg); color: var(--c-purple); }
+.progress .step.next { color: var(--t-muted); }
+.progress .step.next .step-n { background: rgba(0,0,0,0.05); color: var(--t-muted); }
+.progress .line { width: 48px; height: 1.5px; background: rgba(74,123,181,.25); margin: 0 16px; flex-shrink: 0; }
+.progress .line.dim { background: rgba(0,0,0,.08); }
+
+@media (max-width: 1024px) {
+  .split, .form-split { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 900px) {
+  .progress .step { font-size: 14px; }
+  .progress .line { margin: 0 10px; }
+}
+@media (max-width: 768px) {
+  section[id] { scroll-margin-top: 140px; }
+  .nav-note { display: none; }
+  .nav-minimal .nav-inner,
+  .nav-minimal .container { justify-content: center; }
+  .price-card { padding: 32px 24px; }
+  .price-amount { font-size: 44px; }
+  .gracias-main { padding: 140px 20px 72px; }
+  .gracias-wrap .lead { font-size: 16px; }
+  .progress { flex-direction: column; align-items: flex-start; padding: 24px; }
+  .progress .step { white-space: normal; }
+  .progress .line { display: none; }
+}
