@@ -25,7 +25,7 @@
         }
       }
     });
-  }, { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
+  }, { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0 });
 
   revealSections.forEach(function(section) {
     observer.observe(section);

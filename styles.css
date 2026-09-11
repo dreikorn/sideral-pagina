@@ -688,6 +688,72 @@ section { padding: 100px 32px; }
   margin-bottom: 24px;
 }
 
+/* ===== ARTICLE SOURCES (grey box, rounded) ===== */
+.article-sources {
+  margin-top: 56px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+}
+.article-sources h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--t-secondary);
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.article-sources ul { list-style: none; }
+.article-sources li {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--t-secondary);
+  padding: 10px 0;
+  border-top: 1px solid var(--border-light);
+}
+.article-sources li:first-child { border-top: none; padding-top: 0; }
+.article-sources a { word-break: break-all; color: var(--c-purple); }
+.article-sources a:hover { color: var(--c-purple-dark); }
+
+/* ===== ARTICLE AUTHOR BOX ===== */
+.article-author {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin-top: 56px;
+  padding: 28px 32px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+}
+.article-author-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--c-purple);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.article-author h3 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -.2px;
+  margin-bottom: 6px;
+}
+.article-author p {
+  font-size: 15px;
+  color: var(--t-secondary);
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+.article-author a { font-weight: 500; }
+
 /* ===== BLOG INDEX ===== */
 .blog-index {
   background: var(--bg-alt);
@@ -786,6 +852,8 @@ section { padding: 100px 32px; }
   .article-section { padding: 64px 20px 96px; }
   .article-content p { font-size: 16px; }
   .article-cta h3 { font-size: 20px; }
+  .article-sources { padding: 24px 20px; }
+  .article-author { flex-direction: column; padding: 24px 20px; }
 }
 
 /* ===== FUNNEL PAGES (CV / GRACIAS) ===== */
