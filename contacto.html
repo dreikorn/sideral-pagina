@@ -119,5 +119,15 @@
 
   <script src="script.js" defer></script>
   <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+  <script>
+    window.addEventListener('message', function (e) {
+      if (e.origin !== 'https://www.google.com/url?q=https://tally.so&source=gmail&ust=1790350448539000&sa=E') return;
+      var d = e.data;
+      try { if (typeof d === 'string') d = JSON.parse(d); } catch (err) { return; }
+      if (d && d.event === 'Tally.FormSubmitted' && typeof gtag === 'function') {
+        gtag('event', 'generate_lead', { form_name: 'contacto' });
+      }
+    });
+  </script>
 </body>
 </html>
