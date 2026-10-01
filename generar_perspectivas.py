@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Rerunnable script that converts each article in perspectiva/add/<slug>/index.html
-into a standalone article page perspectiva/<slug>.html (fully self-contained
+Rerunnable script that converts each article in perspectivas/add/<slug>/index.html
+into a standalone article page perspectivas/<slug>.html (fully self-contained
 template below) and adds a card for it (plus a JSON-LD BlogPosting entry) to
-perspectivas.html and a <url> entry to sitemap.xml.
+perspectivas/index.html and a <url> entry to sitemap.xml.
 
 Usage: python3 generar_perspectivas.py
 """
@@ -14,9 +14,9 @@ from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-ADD_DIR = ROOT / "perspectiva" / "add"
-PERSP_DIR = ROOT / "perspectiva"
-LISTING = ROOT / "perspectivas.html"
+ADD_DIR = ROOT / "perspectivas" / "add"
+PERSP_DIR = ROOT / "perspectivas"
+LISTING = ROOT / "perspectivas" / "index.html"
 SITEMAP = ROOT / "sitemap.xml"
 BASE_URL = "https://www.sideraltalent.com"
 
@@ -88,7 +88,7 @@ TEMPLATE_HTML = """<!DOCTYPE html>
         <li><a href="/#empresas">Empresas</a></li>
         <li><a href="/#candidatos">Candidatos</a></li>
         <li><a href="/busquedas-activas">B&uacute;squedas Activas</a></li>
-        <li><a href="/perspectivas">Perspectivas</a></li>
+        <li><a href="/perspectivas/">Perspectivas</a></li>
         <li><a href="/contacto" class="nav-cta">Contacto</a></li>
       </ul>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
@@ -135,7 +135,7 @@ TEMPLATE_HTML = """<!DOCTYPE html>
           <span>&copy; 2026 Sideral Talent &middot; Santiago, Chile</span>
         </div>
         <div class="footer-right">
-          <a href="/perspectivas">Perspectivas</a>
+          <a href="/perspectivas/">Perspectivas</a>
           <a href="https://www.linkedin.com/company/sideral-talent" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
@@ -239,7 +239,7 @@ def extract_meta(source):
 
 
 def build_article_page(slug, meta):
-    url = f"{BASE_URL}/perspectiva/{slug}"
+    url = f"{BASE_URL}/perspectivas/{slug}"
 
     # Article-specific OpenGraph meta tags (SEO)
     article_meta = (
@@ -332,10 +332,10 @@ def build_card(slug, meta):
         f'              <div class="article-card-tags">\n'
         f'                <span class="blog-tag">{meta["kicker"]}</span>\n'
         f"              </div>\n"
-        f'              <h3><a href="perspectiva/{slug}">{meta["h1"]}</a></h3>\n'
+        f'              <h3><a href="/perspectivas/{slug}">{meta["h1"]}</a></h3>\n'
         f'              <p class="article-card-meta"><strong>{meta["author"]}</strong> &middot; {meta["date_text"]}</p>\n'
         f'              <p class="article-card-excerpt">{meta["og_desc"]}</p>\n'
-        f'              <a href="perspectiva/{slug}" class="article-card-link">Leer art&iacute;culo <i class="mdi mdi-arrow-right"></i></a>\n'
+        f'              <a href="/perspectivas/{slug}" class="article-card-link">Leer art&iacute;culo <i class="mdi mdi-arrow-right"></i></a>\n'
         f"            </article>\n"
     )
 
@@ -346,10 +346,10 @@ def update_listing(metas):
     # JSON-LD blogPost entries: upsert, then sort newest first
     m = re.search(r'<script type="application/ld\+json">(.*?)</script>', text, DOTALL)
     if not m:
-        raise ValueError("JSON-LD block not found in perspectivas.html")
+        raise ValueError("JSON-LD block not found in perspectivas/index.html")
     ld = json.loads(m.group(1))
     for meta in metas:
-        url = f"{BASE_URL}/perspectiva/{meta['slug']}"
+        url = f"{BASE_URL}/perspectivas/{meta['slug']}"
         entry = next((e for e in ld["blogPost"] if e.get("url") == url), None)
         if entry is None:
             ld["blogPost"].append({
@@ -386,7 +386,7 @@ def update_listing(metas):
 
 def update_sitemap(slug, meta):
     text = SITEMAP.read_text(encoding="utf-8")
-    loc = f"{BASE_URL}/perspectiva/{slug}"
+    loc = f"{BASE_URL}/perspectivas/{slug}"
     m = re.search(
         r'(<loc>' + re.escape(loc) + r'</loc>\n    <lastmod>)[^<]*(</lastmod>)', text
     )
@@ -402,11 +402,11 @@ def update_sitemap(slug, meta):
         f"    <priority>0.7</priority>\n"
         f"  </url>\n"
     )
-    # Insert after the last existing perspectiva entry (keeps blog URLs grouped)
+    # Insert after the last existing perspectivas entry (keeps blog URLs grouped)
     blocks = list(re.finditer(r"  <url>.*?</url>\n", text, DOTALL))
     insert_at = None
     for m in blocks:
-        if "/perspectiva" in m.group(0):
+        if "/perspectivas" in m.group(0):
             insert_at = m.end()
     if insert_at is None:
         insert_at = text.index("</urlset>")
@@ -428,7 +428,7 @@ def main():
         slug = meta["slug"]
         (PERSP_DIR / f"{slug}.html").write_text(build_article_page(slug, meta), encoding="utf-8")
         update_sitemap(slug, meta)
-        print(f"OK  perspectiva/{slug}.html  ({meta['og_title']})")
+        print(f"OK  perspectivas/{slug}.html  ({meta['og_title']})")
     update_listing(metas)
     print(f"Done: {len(sources)} article(s) processed.")
     return 0
