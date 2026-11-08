@@ -754,6 +754,10 @@ section { padding: 100px 32px; }
 }
 .article-author a { font-weight: 500; }
 
+.blog-pilar {
+  text-align: center;
+}
+
 /* ===== BLOG INDEX ===== */
 .blog-index {
   background: var(--bg-alt);
